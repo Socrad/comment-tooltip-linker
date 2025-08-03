@@ -4,6 +4,7 @@
   "description": "Link comments across files using @cmt-anchor and @cmt-link tags with hover tooltips. Simple implementation - feel free to fork and improve!",
   "version": "1.0.0",
   "publisher": "Socrad",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.102.0"
   },

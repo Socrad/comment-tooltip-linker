@@ -57,6 +57,7 @@ pids
 coverage/
 
 # Build outputs
+*.vsix
 dist/
 build/
 
