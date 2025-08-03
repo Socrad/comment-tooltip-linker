@@ -1,0 +1,62 @@
+{
+  "name": "comment-tooltip-linker",
+  "displayName": "Comment Tooltip Linker",
+  "description": "Link comments across files using @cmt-anchor and @cmt-link tags with hover tooltips. Simple implementation - feel free to fork and improve!",
+  "version": "1.0.0",
+  "publisher": "Socrad",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "keywords": [
+    "comments",
+    "documentation",
+    "tooltip",
+    "link",
+    "anchor",
+    "cross-reference"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Comment Tooltip Linker",
+      "properties": {
+        "commentTooltipLinker.anchorTag": {
+          "type": "string",
+          "default": "cmt-anchor",
+          "description": "Custom anchor tag name"
+        },
+        "commentTooltipLinker.linkTag": {
+          "type": "string", 
+          "default": "cmt-link",
+          "description": "Custom link tag name"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.102.0",
+    "@types/node": "20.x",
+    "eslint": "^9.25.1",
+    "@vscode/test-electron": "^2.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Socrad/comment-tooltip-linker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Socrad/comment-tooltip-linker/issues"
+  },
+  "license": "MIT"
+}
