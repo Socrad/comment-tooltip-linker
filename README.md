@@ -16,7 +16,7 @@ If we can link comments to provide a single source of truth referenced from mult
 - Reference anchors from other files using `// @cmt-link id` syntax  
 - Hover over `@cmt-link` tags to see the full comment content in a tooltip
 - Support for multi-line comments
-- Works with JavaScript and TypeScript files
+- Works with many languages using C-style comments (`//`), including JavaScript, TypeScript, C/C++, C#, Java, Go, Rust, and more.
 
 ## Usage
 
@@ -51,15 +51,15 @@ function authMiddleware(req, res, next) {
 
 ## How it Works
 
-1. The extension scans all `.js` and `.ts` files in your workspace
-2. It builds a cache of all `@cmt-anchor id` comments and their content
-3. When you hover over `@cmt-link id`, it shows the corresponding anchor content
-4. The cache automatically updates when files are modified
+1. The extension scans all supported files (e.g., `.js`, `.ts`, `.c`, `.java`, etc.) in your workspace.
+2. It builds a cache of all `@cmt-anchor id` comments and their content.
+3. When you hover over `@cmt-link id`, it shows the corresponding anchor content.
+4. The cache automatically updates when files are modified.
 
 ## Requirements
 
 - VSCode 1.74.0 or higher
-- JavaScript or TypeScript project
+- A project using one of the supported languages (JavaScript, TypeScript, C, C++, C#, Java, Go, Rust, PHP, Swift, Kotlin, etc.)
 
 ## Installation
 

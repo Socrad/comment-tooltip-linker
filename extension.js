@@ -2,6 +2,27 @@ const vscode = require('vscode');
 const fs = require('fs').promises;
 const path = require('path');
 
+const SUPPORTED_LANGUAGES = [
+  { id: 'javascript', extensions: ['js'] },
+  { id: 'typescript', extensions: ['ts'] },
+  { id: 'c', extensions: ['c', 'h'] },
+  { id: 'cpp', extensions: ['cpp', 'hpp', 'cc', 'hh'] },
+  { id: 'csharp', extensions: ['cs'] },
+  { id: 'java', extensions: ['java'] },
+  { id: 'go', extensions: ['go'] },
+  { id: 'rust', extensions: ['rs'] },
+  { id: 'php', extensions: ['php'] },
+  { id: 'swift', extensions: ['swift'] },
+  { id: 'kotlin', extensions: ['kt', 'kts'] },
+  { id: 'dart', extensions: ['dart'] },
+  { id: 'objective-c', extensions: ['m', 'mm'] },
+  { id: 'scala', extensions: ['scala', 'sc'] }
+];
+
+const LANGUAGE_IDS = SUPPORTED_LANGUAGES.map(lang => lang.id);
+const FILE_EXTENSIONS = SUPPORTED_LANGUAGES.flatMap(lang => lang.extensions);
+const FILE_GLOB_PATTERN = `**/*.{${FILE_EXTENSIONS.join(',')}}`;
+
 const anchorCache = new Map(); // { anchorId: { filePath, lineNumber, comment } }
 
 function collectMultiLineComment(lines, startIndex) {
@@ -46,7 +67,7 @@ function collectMultiLineComment(lines, startIndex) {
 
 async function buildAnchorCache() {
   anchorCache.clear();
-  const files = await vscode.workspace.findFiles('**/*.{js,ts}', '**/node_modules/**');
+  const files = await vscode.workspace.findFiles(FILE_GLOB_PATTERN, '**/node_modules/**');
   console.log('Found files:', files.map(f => f.fsPath));
   
   for (const file of files) {
@@ -81,7 +102,7 @@ function activate(context) {
   context.subscriptions.push(
     vscode.workspace.onDidChangeTextDocument(async (event) => {
       const filePath = event.document.uri.fsPath;
-      if (filePath.endsWith('.js') || filePath.endsWith('.ts')) {
+      if (FILE_EXTENSIONS.some(ext => filePath.endsWith(`.${ext}`))) {
         console.log('File changed, rebuilding cache:', filePath);
         await buildAnchorCache();
       }
@@ -89,7 +110,7 @@ function activate(context) {
   );
 
   context.subscriptions.push(
-    vscode.languages.registerHoverProvider(['javascript', 'typescript'], {
+    vscode.languages.registerHoverProvider(LANGUAGE_IDS, {
       async provideHover(document, position) {
         const range = document.getWordRangeAtPosition(position, /@(cmt-link|comment-link)\s+[\w-]+/);
         console.log('Hover at:', document.uri.fsPath, position.line, position.character, 'Range:', range);

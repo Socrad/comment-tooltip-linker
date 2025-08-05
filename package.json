@@ -21,7 +21,19 @@
   ],
   "activationEvents": [
     "onLanguage:javascript",
-    "onLanguage:typescript"
+    "onLanguage:typescript",
+    "onLanguage:c",
+    "onLanguage:cpp",
+    "onLanguage:csharp",
+    "onLanguage:go",
+    "onLanguage:java",
+    "onLanguage:php",
+    "onLanguage:rust",
+    "onLanguage:swift",
+    "onLanguage:kotlin",
+    "onLanguage:dart",
+    "onLanguage:objective-c",
+    "onLanguage:scala"
   ],
   "main": "./extension.js",
   "contributes": {
