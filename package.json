@@ -2,7 +2,7 @@
   "name": "comment-tooltip-linker",
   "displayName": "Comment Tooltip Linker",
   "description": "Link comments across files using @cmt-anchor and @cmt-link tags with hover tooltips. Simple implementation - feel free to fork and improve!",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "publisher": "Socrad",
   "icon": "icon.png",
   "engines": {

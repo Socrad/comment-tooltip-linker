@@ -67,6 +67,11 @@ Install from the VSCode Extension Marketplace or search for "Comment Tooltip Lin
 
 ## Release Notes
 
+### 1.1.0
+
+- **Multi-language Support:** Added support for a wide range of languages using C-style comments (C++, Java, C#, Go, Rust, etc.).
+- **Dynamic Language Handling:** Refactored the extension to easily support new languages in the future.
+
 ### 1.0.0
 
 Initial release with basic anchor and link functionality.
